@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails GroupSplit: development" uuid="a8f235f7-0e64-4315-a3f4-1303cc750670">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails GroupSplit: test" uuid="9ac49ceb-e142-41ea-95aa-021b73150f52">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails GroupSplit: production" uuid="bedaa097-9ee4-4032-8ed1-ec6e67bfe786">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>
