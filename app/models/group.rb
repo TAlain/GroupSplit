@@ -8,4 +8,8 @@ class Group < ActiveRecord::Base
   def kick_member member
     users.delete(member) if users.include? member
   end
+
+  def create_bill member
+    #create a bill
+  end
 end

@@ -44,4 +44,12 @@ class User < ActiveRecord::Base
   def is_owner_of(group)
     group.owner_id == self.id
   end
+
+  def create_bill(group)
+    if self.groups.include? group
+    group.create_bill(self)
+    else
+      raise 'You are not a member of this group!'
+    end
+  end
 end
