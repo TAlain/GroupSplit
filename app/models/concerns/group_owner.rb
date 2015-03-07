@@ -1,3 +1,4 @@
+
 module GroupOwner
   def create_group(groupname)
     Group.create(name: groupname, owner_id: self.id)
@@ -21,7 +22,7 @@ module GroupOwner
     end
   end
 
-  def is_owner_of?(group)
+  protected def is_owner_of?(group)
     if group.owner_id == self.id
       yield
     else
