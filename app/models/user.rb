@@ -25,31 +25,29 @@ class User < ActiveRecord::Base
   end
 
   def destroy_group(group)
-    if self.is_owner_of(group)
+    self.is_owner_of?(group) do
       group.destroy_self
-    else
-      raise 'You are not the owner of this group.'
     end
   end
 
   def invite_member_to_group(new_member, group)
-    if self.is_owner_of(group)
+    self.is_owner_of?(group) do
       group.invite_member(new_member)
-    else
-      raise 'You are not the owner of this group.'
     end
   end
 
   def remove_member_from_group(member, group)
-    if self.is_owner_of(group)
+    self.is_owner_of?(group) do
       group.kick_member(member)
-    else
-      raise 'You are not the owner of this group.'
     end
   end
 
-  def is_owner_of(group)
-    group.owner_id == self.id
+  def is_owner_of?(group)
+    if group.owner_id == self.id
+      yield
+    else
+      raise 'You are not the owner of this group.'
+    end
   end
 
   def create_bill(group, amount)
