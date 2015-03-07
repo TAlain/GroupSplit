@@ -24,8 +24,4 @@ class Group < ActiveRecord::Base
   def bills_for_member(member)
     bills.where(user_id: member.id).all
   end
-
-  def calculate_total_expense
-    ExpenseCalculator.calc
-  end
 end

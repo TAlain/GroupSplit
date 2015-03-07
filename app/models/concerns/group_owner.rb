@@ -22,11 +22,12 @@ module GroupOwner
     end
   end
 
-  protected def is_owner_of?(group)
-    if group.owner_id == self.id
-      yield
-    else
-      raise 'You are not the owner of this group.'
-    end
-  end
+    protected
+      def is_owner_of?(group)
+        if group.owner_id == self.id
+          yield
+        else
+          raise 'You are not the owner of this group.'
+        end
+      end
 end
