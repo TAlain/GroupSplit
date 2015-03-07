@@ -1,26 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Group, :type => :model do
+
       let (:group){FactoryGirl.build(:group)}
       let (:user){FactoryGirl.build(:user)}
       let (:jef){FactoryGirl.build(:user)}
+
     it "has a valid factory" do
       expect(group).to be_valid
     end
 
   context '.destroy_self' do
-    it "can delete an active_record" do
+    it "can delete an active_record of Group" do
       johnny5 = Group.create(name:"Short Circuit")
       johnny5.destroy_self
       expect(Group.all.size).to eq 0
     end
   end
+      
   context '.invite_member' do
     it "can add users" do
       group.invite_member(jef)
       expect(group.users.include? jef).to be_truthy
     end
-    it "can not add users twice" do
+    it "can not add same user twice" do
       group.invite_member(jef)
       group.invite_member(jef)
       expect(group.users.size).to eq 1
@@ -39,7 +42,6 @@ RSpec.describe Group, :type => :model do
     it "can create bills" do
       group.users << jef
       group.create_bill(jef, 10)
-      expect(Bill.all.size).to eq 1
       expect(Bill.first.amount).to eq 10
       expect(Bill.first.user_id).to eq jef.id
       expect(Bill.first.group_id).to eq group.id
@@ -52,9 +54,9 @@ RSpec.describe Group, :type => :model do
   end
 
   context '.bills' do
-    it "shows all bills for the group" do
+    it "shows all bills for the correct group" do
       group.users << jef
-      Bill.create(amount:1, user_id:2, group_id: group.id+1)
+      Bill.create(amount:1, user_id:jef.id, group_id: group.id+1)
       group.create_bill(jef, 10)
       expect(group.bills.size).to eq 1
     end
