@@ -3,10 +3,14 @@
 Web application made with Ruby on Rails.
 
 Allows groups of users to split long-term expenses.
+A (graphical?) history of expenses.
 
 Use-case examples
 
   * A group-vacation where some expenses can be split.
   * A group of people living togheter splitting groceries over a pro-longed period of time
+  * Individual bills can have further splits
+      (eg: 1 Roommate buys collective groceries for 60€ ..  But he specifies that a book and cigarettes worth 15€ are for his roommate.
+      => 45€ will split to 22.5 each AND 15€ extra will added to the 2nd roommates expense)
 
 <tt>rake doc:app</tt>.
