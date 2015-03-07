@@ -17,7 +17,7 @@ RSpec.describe Group, :type => :model do
       expect(Group.all.size).to eq 0
     end
   end
-      
+
   context '.invite_member' do
     it "can add users" do
       group.invite_member(jef)
