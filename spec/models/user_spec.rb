@@ -35,15 +35,28 @@ RSpec.describe User, :type => :model do
   context '.remove_member_from_group' do
       it "can remove a member from own groups" do
         group = instance_double(Group,owner_id: user.id)
-        expect(group).to receive(:kick_member).with('jef')
-        user.remove_member_from_group('jef',group)
+        expect(group).to receive(:kick_member).with(jef)
+        user.remove_member_from_group(jef,group)
       end
 
-      it "can not send an invite for other groups" do
+      it "can not remove a member for not-owned groups" do
         group = instance_double(Group, owner_id: "not_user")
-        expect{user.remove_member_from_group('jef',group)}.to raise_error(RuntimeError,"You are not the owner of this group.")
+        expect{user.remove_member_from_group(jef,group)}.to raise_error(RuntimeError,"You are not the owner of this group.")
       end
   end
+
+   context '.destroy_group' do
+     it "can destroy an owned group" do
+       group = instance_double(Group,owner_id: user.id)
+       expect(group).to receive(:destroy_self)
+       user.destroy_group(group)
+     end
+
+     it "can not destoy a non-owned group" do
+       group = instance_double(Group, owner_id: "not_user")
+       expect{user.destroy_group(group)}.to raise_error(RuntimeError,"You are not the owner of this group.")
+     end
+   end
 
   context '.create_bill' do
     let (:group){FactoryGirl.build(:group)}

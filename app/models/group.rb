@@ -1,6 +1,10 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users
 
+  def destroy_self
+    Group.find(self.id).destroy
+  end
+
   def invite_member new_member
     users << new_member if !users.include? new_member
   end

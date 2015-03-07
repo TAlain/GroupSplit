@@ -25,12 +25,20 @@ class User < ActiveRecord::Base
     Group.create(name: groupname, owner_id: self.id)
   end
 
+  def destroy_group(group)
+    if self.is_owner_of(group)
+      group.destroy_self
+    else
+      raise 'You are not the owner of this group.'
+    end
+  end
+
   def invite_member_to_group(new_member, group)
     if self.is_owner_of(group)
       group.invite_member(new_member)
     else
       raise 'You are not the owner of this group.'
-      end
+    end
   end
 
   def remove_member_from_group(member, group)
