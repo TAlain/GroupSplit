@@ -27,10 +27,18 @@ class User < ActiveRecord::Base
 
   def invite_member_to_group(new_member, group)
     if self.is_owner_of(group)
-      group.invite(new_member)
+      group.invite_member(new_member)
     else
       raise 'You are not the owner of this group.'
       end
+  end
+
+  def remove_member_from_group(member, group)
+    if self.is_owner_of(group)
+      group.kick_member(member)
+    else
+      raise 'You are not the owner of this group.'
+    end
   end
 
   def is_owner_of(group)
