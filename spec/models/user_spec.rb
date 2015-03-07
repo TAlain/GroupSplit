@@ -63,4 +63,5 @@ RSpec.describe User, :type => :model do
       expect{jef.create_bill(user, 10)}.to raise_error(RuntimeError,"You are not a member of this group.")
     end
   end
+
 end

@@ -71,4 +71,9 @@ RSpec.describe Group, :type => :model do
      expect(group.bills_for_member(jef).first).to eq jefs_bill
    end
  end
+  context '.calculate_total_expense' do
+    it"returns the total expenses for the group" do
+
+    end
+  end
 end
