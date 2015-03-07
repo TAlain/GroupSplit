@@ -45,11 +45,11 @@ class User < ActiveRecord::Base
     group.owner_id == self.id
   end
 
-  def create_bill(group)
+  def create_bill(group, amount)
     if self.groups.include? group
-    group.create_bill(self)
+    group.create_bill(self, amount)
     else
-      raise 'You are not a member of this group!'
+      raise 'You are not a member of this group.'
     end
   end
 end

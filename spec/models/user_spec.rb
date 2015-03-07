@@ -49,8 +49,12 @@ RSpec.describe User, :type => :model do
     let (:group){FactoryGirl.build(:group)}
     it "sends a create_bill message to group" do
       user.groups << group
-      expect(group).to receive(:create_bill).with(user)
-      user.create_bill(group)
+      expect(group).to receive(:create_bill).with(user, 10)
+      user.create_bill(group, 10)
+    end
+    it "can not create bills for other groups" do
+      group = instance_double(Group)
+      expect{user.create_bill(user, 10)}.to raise_error(RuntimeError,"You are not a member of this group.")
     end
   end
 end

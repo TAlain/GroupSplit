@@ -12,7 +12,12 @@ RSpec.describe Group, :type => :model do
   context '.invite_member' do
     it "can add users" do
       group.invite_member(jef)
-      expect(group.users.include? jef). to be_truthy
+      expect(group.users.include? jef).to be_truthy
+    end
+    it "can not add users twice" do
+      group.invite_member(jef)
+      group.invite_member(jef)
+      expect(group.users.size).to eq 1
     end
   end
 
@@ -21,6 +26,22 @@ RSpec.describe Group, :type => :model do
       group.users << jef
       group.kick_member(jef)
       expect(group.users.size).to eq(0)
+    end
+  end
+
+  context '.create_bill' do
+    it "can create bills" do
+      group.users << jef
+      group.create_bill(jef, 10)
+      expect(Bill.all.size).to eq 1
+      expect(Bill.first.amount).to eq 10
+      expect(Bill.first.user_id).to eq jef.id
+      expect(Bill.first.group_id).to eq group.id
+    end
+
+    it "can not create bills for other groups" do
+      group.create_bill(jef, 10)
+      expect(Bill.all.size).to eq 0
     end
   end
 end

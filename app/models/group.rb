@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
     users.delete(member) if users.include? member
   end
 
-  def create_bill member
-    #create a bill
+  def create_bill member, amount
+    Bill.create(user_id: member.id,amount: amount, group_id: self.id) if users.include? member
   end
 end
