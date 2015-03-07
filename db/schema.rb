@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20150307133234) do
   enable_extension "plpgsql"
 
   create_table "bills", force: true do |t|
-    t.integer "amount"
-    t.integer "group_id"
-    t.integer "user_id"
+    t.integer "amount",   null: false
+    t.integer "group_id", null: false
+    t.integer "user_id",  null: false
   end
 
   add_index "bills", ["group_id"], name: "index_bills_on_group_id", using: :btree

@@ -12,4 +12,12 @@ class Group < ActiveRecord::Base
   def create_bill member, amount
     Bill.create(user_id: member.id,amount: amount, group_id: self.id) if users.include? member
   end
+
+  def bills
+    Bill.where(group_id: self.id).all
+  end
+
+  def bills_for_member(member)
+    bills.where(user_id: member.id).all
+  end
 end

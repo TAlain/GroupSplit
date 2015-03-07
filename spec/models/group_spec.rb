@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Group, :type => :model do
-
       let(:group){FactoryGirl.build(:group)}
+      let (:user){FactoryGirl.build(:user)}
       let (:jef){FactoryGirl.build(:user)}
     it "has a valid factory" do
       expect(group).to be_valid
@@ -44,4 +44,23 @@ RSpec.describe Group, :type => :model do
       expect(Bill.all.size).to eq 0
     end
   end
+
+  context '.bills' do
+    it "shows all bills for the group" do
+      group.users << jef
+      Bill.create(amount:1, user_id:2, group_id: group.id+1)
+      group.create_bill(jef, 10)
+      expect(group.bills.size).to eq 1
+    end
+  end
+
+      context '.bills_for_member' do
+        it "shows all groupbills for a member" do
+          group.users << jef
+          jefs_bill = group.create_bill(jef, 10)
+          group.create_bill(user, 10)
+          expect(group.bills_for_member(jef).size).to eq 1
+          expect(group.bills_for_member(jef).first).to eq jefs_bill
+        end
+      end
 end
