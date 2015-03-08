@@ -11,6 +11,19 @@ class User < ActiveRecord::Base
             :uniqueness => {
                 :case_sensitive => false
             }
+  validate :check_empty_space
+  before_save :capitalize_names
+
+
+  def check_empty_space
+    if username.match(/\s+/)
+      errors.add(:attribute, "No empty spaces please")
+    end
+  end
+
+  def capitalize_names
+    username.capitalize!
+  end
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

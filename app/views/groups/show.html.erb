@@ -1,13 +1,21 @@
 <div class='content'>
-<h7><%=label_tag @group.name %></h7> <br>
-  <h5> Group Owner: <%=label_tag User.find(@group.owner_id).username %></h5>
-<%= label_tag @group.name+' members'%>
-<div id='invite_members_container' class='invite_members-container jumbotron'>
+<h7> <%=label_tag "Group Name: " + @group.name %></h7> <br>
+  <h5> <%=label_tag "Group Owner: " +User.find(@group.owner_id).username %></h5>
+
+  <%=form_for @group, :html => {:controller => "groups", :action => "update", :method => "patch"} do%>
+    <%= label_tag "New Member" %> <%= text_field "member_username", nil, id: @group.id%>
+    <%= submit_tag "Invite", class: 'btn-primary btn' %>
+  <% end %>
+
+<div id='members-container' class='members-container panel panel-default'>
+  <div class="panel-heading">Group Members</div>
+  <div class="panel-body">
   <% @group.users.each do |u| %>
     <% if u.id != @group.owner_id%>
       <%= label_tag u.username,nil, class: 'label label-default select_members', id: u.id %>
     <% end %>
   <% end %>
+    </div>
 </div>
   <%=form_for @group, :html => {:controller => "groups" , :action => "destroy", :method => "delete"} do  %>
   <%= submit_tag "Delete Group", class: "btn btn-primary", id: @group.id%>

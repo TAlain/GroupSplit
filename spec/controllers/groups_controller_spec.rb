@@ -4,6 +4,7 @@ RSpec.describe GroupsController, :type => :controller do
 
   login_user
   let(:user) { User.first }
+  let(:jef) {FactoryGirl.build(:user, username: "Jef")}
   let(:group) {FactoryGirl.build(:group, owner_id: user.id)}
 
   describe "GET new" do
@@ -48,6 +49,16 @@ RSpec.describe GroupsController, :type => :controller do
       post :show, id: group.id
       expect(response).to have_http_status(200)
       expect(response).to render_template :show
+    end
+  end
+
+  describe "POST #update" do
+    it "can invite new members to group" do
+      group.save
+      jef.save
+      post :update, id: group.id, member_username: "jef"
+      expect(group.users).to include jef
+      expect(response).to redirect_to group_url(id: group.id)
     end
   end
 
