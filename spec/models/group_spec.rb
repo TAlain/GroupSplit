@@ -71,4 +71,11 @@ RSpec.describe Group, :type => :model do
      expect(group.bills_for_member(jef).first).to eq jefs_bill
    end
  end
+
+  context '.calculate_split_expenses' do
+    it 'create calculate message to ExpenseCalculator' do
+      expect(ExpenseCalculator).to receive(:split_up_expenses).with(group)
+      group.calculate_split_expenses
+    end
+  end
 end

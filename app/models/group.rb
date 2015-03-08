@@ -24,4 +24,8 @@ class Group < ActiveRecord::Base
   def bills_for_member(member)
     bills.where(user_id: member.id).all
   end
+
+  def calculate_split_expenses
+    ExpenseCalculator.split_up_expenses(self)
+  end
 end
