@@ -1,0 +1,12 @@
+  <%=form_for @group, :url => {:controller => "groups" , :action => "create", :method => "post"} do |f| %>
+  <div class="form-group">
+
+    <%= f.label :name,"Group Name"%>
+    <%= f.text_field :name, class: "form-control"%>
+
+  </div>
+    <%= f.submit "Create Group", class: "btn btn-primary"%>
+    <%= @group.errors.full_messages.first if @group.errors.any? %>
+  <%end%>
+
+
