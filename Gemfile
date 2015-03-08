@@ -33,6 +33,7 @@ gem 'factory_girl_rails'
 gem 'devise'
 
 gem 'awesome_print', '~> 1.6.1'
+gem 'pry'
 
 # -- To Bootstrap
 

@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   validates :name, :presence => true
 
   def destroy_self
-    Group.find(self.id).destroy
+    group = Group.find(self.id).destroy
   end
 
   def invite_member new_member

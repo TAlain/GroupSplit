@@ -1,4 +1,4 @@
-  <%=form_for @group, :url => {:controller => "groups" , :action => "create", :method => "post"} do |f| %>
+  <%=form_for @group, :html => {:controller => "groups" , :action => "create", :method => "post"} do |f| %>
   <div class="form-group">
 
     <%= f.label :name,"Group Name"%>
@@ -8,5 +8,4 @@
     <%= f.submit "Create Group", class: "btn btn-primary"%>
     <%= @group.errors.full_messages.first if @group.errors.any? %>
   <%end%>
-
 

@@ -1,0 +1,15 @@
+<div class='content'>
+<h7><%=label_tag @group.name %></h7> <br>
+  <h5> Group Owner: <%=label_tag User.find(@group.owner_id).username %></h5>
+<%= label_tag @group.name+' members'%>
+<div id='invite_members_container' class='invite_members-container jumbotron'>
+  <% @group.users.each do |u| %>
+    <% if u.id != @group.owner_id%>
+      <%= label_tag u.username,nil, class: 'label label-default select_members', id: u.id %>
+    <% end %>
+  <% end %>
+</div>
+  <%=form_for @group, :html => {:controller => "groups" , :action => "destroy", :method => "delete"} do  %>
+  <%= submit_tag "Delete Group", class: "btn btn-primary", id: @group.id%>
+<%end%>
+</div>

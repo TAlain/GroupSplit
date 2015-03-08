@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :groups, :only =>[:show, :new, :create]
+  resources :groups, :only =>[:show, :new, :create, :destroy]
 
   devise_for :users
 

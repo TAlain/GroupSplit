@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe GroupsController, :type => :controller do
 
   login_user
+  let(:user) { User.first }
+  let(:group) {FactoryGirl.build(:group, owner_id: user.id)}
 
   describe "GET new" do
     it "returns http success" do
@@ -16,16 +18,16 @@ RSpec.describe GroupsController, :type => :controller do
   end
 
   describe "POST #create" do
-    let(:user) { User.first }
 
     it "should return the correct response" do
       post :create, owner_id: user.id, :group => { :name => 'testgrp' }
       expect(response).to have_http_status(302)
     end
 
-    it "should redirect to the index action" do
+    it "should redirect to the new action" do
       post :create, owner_id: user.id, :group => { :name => 'testgrp' }
-      expect(response).to redirect_to action: :new
+      testgrp=Group.where(name: 'testgrp').first
+      expect(response).to redirect_to group_url(id: testgrp.id)
     end
 
     it "should save the group" do
@@ -35,7 +37,26 @@ RSpec.describe GroupsController, :type => :controller do
 
     it "should add owner to group membership" do
       post :create, owner_id: user.id, :group => { :name => 'testgrp' }
-      expect(user.groups.first.id).to eq(Group.first.id)
+      testgrp=Group.where(name: 'testgrp').first
+      expect(user.groups.first.id).to eq(testgrp.id)
+    end
+  end
+
+  describe "POST #show" do
+    it "should return the correct response" do
+      group.save
+      post :show, id: group.id
+      expect(response).to have_http_status(200)
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "POST #destroy" do
+    it "should destroy the group" do
+      group.save
+      post :destroy, id: group.id
+      expect(Group.all.size).to eq 0
+      expect(response).to redirect_to action: :new
     end
   end
 

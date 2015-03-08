@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
     @group = Group.new(owner_id: current_user.id, name:params[:group][:name])
     if @group.save
       current_user.groups << @group
-      redirect_to new_group_url
+      redirect_to group_url(id: @group.id)
     else
       render :action => "new"
     end
@@ -15,6 +15,11 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    redirect_to @group.url
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    current_user.destroy_group(@group)
+    redirect_to new_group_url
   end
 end
