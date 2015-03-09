@@ -56,7 +56,7 @@ RSpec.describe GroupsController, :type => :controller do
     it "can invite new members to group" do
       group.save
       jef.save
-      post :update, id: group.id, member_username: "jef"
+      post :update, id: group.id, member_username: ["jef"]
       expect(group.users).to include jef
       expect(response).to redirect_to group_url(id: group.id)
     end

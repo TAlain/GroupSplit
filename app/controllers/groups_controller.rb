@@ -13,9 +13,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def index
+    @groups = current_user.groups
+    render :index
+  end
+
   def update
     set_group
-    new_member=User.where(username: params[:member_username].capitalize)
+    new_member=User.where(username: params[:member_username].first.capitalize)
     current_user.invite_member_to_group(new_member,@group)
 
     redirect_to group_url(id: @group.id)
