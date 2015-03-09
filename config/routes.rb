@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :groups, :only =>[:show, :new, :create, :destroy, :update, :index]
+
+  resources :groups do
+    collection do
+      delete 'destroy_multiple_members'
+    end
+  end
 
   devise_for :users
 

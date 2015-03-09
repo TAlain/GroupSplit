@@ -17,6 +17,12 @@
   <% end %>
     </div>
 </div>
+  <%= form_tag destroy_multiple_members_groups_path, method: :delete do %>
+    <%= hidden_field_tag :members_ids, nil%>
+    <%= hidden_field_tag :id, @group.id %>
+    <%= submit_tag "Remove selected members", class: 'btn-primary btn delete_members'%>
+  <% end %>
+  </br>
   <%=form_for @group, :html => {:controller => "groups" , :action => "destroy", :method => "delete"} do  %>
   <%= submit_tag "Delete Group", class: "btn btn-primary", id: @group.id%>
 <%end%>

@@ -5,6 +5,7 @@ RSpec.describe GroupsController, :type => :controller do
   login_user
   let(:user) { User.first }
   let(:jef) {FactoryGirl.build(:user, username: "Jef")}
+  let(:jos) {FactoryGirl.build(:user, username: "Jos")}
   let(:group) {FactoryGirl.build(:group, owner_id: user.id)}
 
   describe "GET new" do
@@ -68,6 +69,15 @@ RSpec.describe GroupsController, :type => :controller do
       post :destroy, id: group.id
       expect(Group.all.size).to eq 0
       expect(response).to redirect_to action: :new
+    end
+  end
+
+  describe "POST #destroy_multiple_members" do
+    it "should destroy the group" do
+      group.save
+      group.users << [jef,jos]
+      post :destroy_multiple_members, id: group.id, members_ids: "#{jef.id},#{jos.id}"
+      expect(group.users.size).to eq 0
     end
   end
 
