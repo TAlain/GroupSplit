@@ -1,14 +1,14 @@
 <% @groups.each do |group| %>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <%= label_tag "Group:"%>  <%= label_tag group.name, nil, class:"label label-primary"%>
+       <b><%= label_tag "Group:"%> <%= label_tag group.name%></b>
       <% if current_user.id == group.owner_id %>
         <%= link_to "Edit", group_path(group.id)%>
       <%end%>
       </br>
-    </div>
     <div class="panel-body">
-  <%= label_tag "Members:"%>  <%= label_tag group.users.size, nil, class:"label label-primary"%>
+      <% group.users.each do |user| %>
+       <%= label_tag user.username, nil, class:"label label-default" %>
+      <% end %>
 
     </div>
   </div>
