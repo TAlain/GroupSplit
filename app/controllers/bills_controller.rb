@@ -1,36 +1,31 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
 
-  # GET /bills
-  # GET /bills.json
   def index
     @bills = Bill.all
   end
 
-  # GET /bills/1
-  # GET /bills/1.json
-  def show
-  end
-
-  # GET /bills/new
   def new
     @bill = Bill.new
   end
 
-  # POST /bills
-  # POST /bills.json
   def create
     @bill = Bill.new(bill_params)
 
-    respond_to do |format|
-      if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
-        format.json { render :show, status: :created, location: @bill }
-      else
-        format.html { render :new }
-        format.json { render json: @bill.errors, status: :unprocessable_entity }
-      end
+    if @bill.save
+      redirect_to @bill, notice: 'Bill was successfully created.'
+    else
+      render :new
     end
+    # respond_to do |format|
+    #   if @bill.save
+    #     format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+    #     format.json { render :show, status: :created, location: @bill }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @bill.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /bills/1
