@@ -46,6 +46,12 @@ class GroupsController < ApplicationController
     redirect_to group_url(id: @group.id)
   end
 
+  def calculate_split_expenses
+    set_group
+    @group_split = @group.calculate_split_expenses
+
+  end
+
   def set_group
     @group = Group.find(params[:id])
   end
