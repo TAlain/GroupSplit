@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150310194051) do
   enable_extension "plpgsql"
 
   create_table "bills", force: true do |t|
-    t.integer "amount",      null: false
+    t.decimal "amount",      null: false
     t.integer "group_id",    null: false
     t.integer "user_id",     null: false
     t.string  "description"

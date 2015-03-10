@@ -10,11 +10,11 @@
   <tbody>
     <% @bills.each do |bill| %>
   <div class="panel panel-default">
-          <%= label_tag "Description:"%> <%= label_tag bill.description%>
+          <%= label_tag "Description: "%> <%= label_tag bill.description%>
         <%= link_to 'Show', bill %>
         <%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-          <%= label_tag "Ammount:"%><%= label_tag bill.amount%></br>
-          <%= label_tag "Group:"%><%= label_tag bill.group_id%>
+          <%= label_tag "Ammount: "%><%= label_tag number_to_currency(bill.amount, unit: '€')%></br>
+          <%= label_tag "Group: "%><%= label_tag bill.group.name%>
   </div>
     <% end %>
   </tbody>

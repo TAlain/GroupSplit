@@ -9,6 +9,7 @@ RSpec.describe BillsController, :type => :controller do
     group_id: 1,
     description: "Winkel"
   }}
+  let (:post_attributes) {{:bill => {amount: 5, description: "Winkel"}, groups_select:5 , user_id:2}}
   let(:invalid_attributes) {{
     :user_id => nil,
     :group_id => nil
@@ -42,18 +43,18 @@ RSpec.describe BillsController, :type => :controller do
     describe "with valid params" do
       it "creates a new Bill" do
         expect {
-          post :create, {:bill => {amount: 5}, groups_select:5 , user_id:2}
+          post :create, post_attributes
         }.to change(Bill, :count).by(1)
       end
 
       it "assigns a newly created bill as @bill" do
-        post :create, {:bill => {amount: 5}, groups_select:5 , user_id:2}
+        post :create, post_attributes
         expect(assigns(:bill)).to be_a(Bill)
         expect(assigns(:bill)).to be_persisted
       end
 
       it "redirects to the created bill" do
-        post :create, {:bill => {amount: 5}, groups_select:5 , user_id:2}
+        post :create, post_attributes
         expect(response).to redirect_to(Bill.last)
       end
     end
