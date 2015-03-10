@@ -17,10 +17,6 @@ class BillsController < ApplicationController
     @bill = Bill.new
   end
 
-  # GET /bills/1/edit
-  def edit
-  end
-
   # POST /bills
   # POST /bills.json
   def create
@@ -32,20 +28,6 @@ class BillsController < ApplicationController
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new }
-        format.json { render json: @bill.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /bills/1
-  # PATCH/PUT /bills/1.json
-  def update
-    respond_to do |format|
-      if @bill.update(bill_params)
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bill }
-      else
-        format.html { render :edit }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +51,8 @@ class BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
-      params[:bill]
+      {amount: params[:bill][:amount],
+       user_id: params[:user_id],
+       group_id: params[:groups_select]}
     end
 end
