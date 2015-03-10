@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :bills, :only =>[:show, :new, :create, :destroy, :index]
+
   devise_for :users
 
   root :to => redirect('/groups/new')

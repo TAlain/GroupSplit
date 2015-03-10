@@ -4,5 +4,6 @@ FactoryGirl.define do
     sequence :id do |n|
       "#{n}"
     end
+    description "Winkel"
   end
 end

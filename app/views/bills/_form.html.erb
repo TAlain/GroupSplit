@@ -1,0 +1,22 @@
+<%= form_for(@bill) do |f| %>
+
+  <%= select_tag "groups_select", options_from_collection_for_select(current_user.groups, "id", "name") %> <br><br>
+  <%= label_tag "Amount"%> <%= f.number_field :amount, class: "form-control", :step => 0.01%>
+  <%= label_tag "Description"%> <%= f.text_field :description, class: "form-control"%>
+  <%= hidden_field_tag :user_id, current_user.id%>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+
+      <ul>
+      <% @bill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

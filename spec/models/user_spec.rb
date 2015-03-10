@@ -53,15 +53,4 @@ RSpec.describe User, :type => :model do
      end
    end
 
-  context '.create_bill' do
-    it "sends a create_bill message to group" do
-      user.groups << users_group
-      expect(users_group).to receive(:create_bill).with(user, 10)
-      user.create_bill(users_group, 10)
-    end
-    it "can not create bills for other groups" do
-      expect{jef.create_bill(user, 10)}.to raise_error(RuntimeError,"You are not a member of this group.")
-    end
-  end
-
 end

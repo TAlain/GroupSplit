@@ -3,15 +3,16 @@ require "rails_helper"
 RSpec.describe Group, :type => :model do
 
   let (:group){FactoryGirl.build(:group)}
-  let (:user){FactoryGirl.build(:user,username:'user')}
-  let (:jef){FactoryGirl.build(:user,username:'jef')}
-  let (:jos){FactoryGirl.build(:user,username:'jos')}
+  let (:user){FactoryGirl.create(:user,username:'user')}
+  let (:jef){FactoryGirl.create(:user,username:'jef')}
+  let (:jos){FactoryGirl.create(:user,username:'jos')}
+  let (:bill_args) {{group_id: group.id, description: "Winkel"}}
 
   before(:each) do
     group.users << [user,jef,jos]
-    group.create_bill(user, 10)
-    group.create_bill(jef, 15)
-    group.create_bill(jos, 5)
+    group.create_bill(bill_args.merge(user_id: user.id, amount: 10))
+    group.create_bill(bill_args.merge(user_id: jef.id, amount: 15))
+    group.create_bill(bill_args.merge(user_id: jos.id, amount: 5))
   end
 
   context "#total_for_group" do
@@ -28,7 +29,7 @@ RSpec.describe Group, :type => :model do
 
   context "#split_up_expenses" do
     it"splits up all expenses amongst the group's users" do
-      expected={jef: -5, jos: 5, user: 0}
+      expected={ User: 0, Jef: -5, Jos: 5}
       expect(ExpenseCalculator.split_up_expenses(group)).to eq expected
     end
   end

@@ -11,9 +11,9 @@
   <!-- Collection of nav links and other content for toggling -->
   <div id="navbarCollapse" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
       <li><%= link_to "Groups", groups_path %></li>
-      <li><a href="#">New Bill</a></li>
+      <li><%= link_to "Bills", bills_path %></li>
+      <li><%= link_to "New Bill", new_bill_path %></li>
 
       <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Current-Group<b class="caret"></b></a>
@@ -21,8 +21,6 @@
           <li><a href="#">Group1</a></li>
           <li><a href="#">Group2</a></li>
           <li><a href="#">Group3</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Trash</a></li>
         </ul>
       </li>
 
