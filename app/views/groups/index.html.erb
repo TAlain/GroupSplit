@@ -1,3 +1,4 @@
+<li><%= link_to "Create new Group", new_group_path, class: "btn btn-primary"%></li> <br>
 <% @groups.each do |group| %>
   <div class="panel panel-default">
        <b><%= label_tag "Group:"%> <%= label_tag group.name%></b>
