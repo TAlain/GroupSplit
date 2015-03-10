@@ -53,6 +53,7 @@ class BillsController < ApplicationController
     def bill_params
       {amount: params[:bill][:amount],
        user_id: params[:user_id],
-       group_id: params[:groups_select]}
+       group_id: params[:groups_select],
+      description: params[:bill][:description]}
     end
 end

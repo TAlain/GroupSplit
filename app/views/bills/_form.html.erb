@@ -1,7 +1,8 @@
 <%= form_for(@bill) do |f| %>
 
   <%= select_tag "groups_select", options_from_collection_for_select(current_user.groups, "id", "name") %> <br><br>
-  <%= label_tag "Amount"%> <%= f.text_field :amount, class: "form-control"%>
+  <%= label_tag "Amount"%> <%= f.number_field :amount, class: "form-control"%>
+  <%= label_tag "Description"%> <%= f.text_field :description, class: "form-control"%>
   <%= hidden_field_tag :user_id, current_user.id%>
   <% if @bill.errors.any? %>
     <div id="error_explanation">

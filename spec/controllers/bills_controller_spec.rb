@@ -6,7 +6,8 @@ RSpec.describe BillsController, :type => :controller do
   let(:valid_attributes) {{
     amount: 4,
     user_id: user.id,
-    group_id: 1
+    group_id: 1,
+    description: "Winkel"
   }}
   let(:invalid_attributes) {{
     :user_id => nil,

@@ -14,8 +14,8 @@ class Group < ActiveRecord::Base
     users.delete(member) if users.include? member
   end
 
-  def create_bill member, amount
-    Bill.create(user_id: member.id,amount: amount, group_id: self.id) if users.include? member
+  def create_bill args
+    Bill.create(args) if users.include? User.find(args[:user_id])
   end
 
   def bills

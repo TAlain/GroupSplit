@@ -9,11 +9,13 @@
 
   <tbody>
     <% @bills.each do |bill| %>
-      <tr>
-        <td><%= label_tag "Bill:"%> <%= label_tag bill.amount%>|<%= label_tag bill.group_id%></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <div class="panel panel-default">
+          <%= label_tag "Description:"%> <%= label_tag bill.description%>
+        <%= link_to 'Show', bill %>
+        <%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <%= label_tag "Ammount:"%><%= label_tag bill.amount%></br>
+          <%= label_tag "Group:"%><%= label_tag bill.group_id%>
+  </div>
     <% end %>
   </tbody>
 </table>
