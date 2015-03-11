@@ -21,7 +21,6 @@ RSpec.describe User, :type => :model do
 
   context '.invite_member_to_group' do
       it "can send an invite for your groups" do
-        # group = instance_double(Group,owner_id: user.id)
         expect(users_group).to receive(:invite_member).with(jef)
         user.invite_member_to_group(jef,users_group)
       end

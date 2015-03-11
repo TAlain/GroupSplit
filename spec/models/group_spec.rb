@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Group, :type => :model do
 
-      let (:group){FactoryGirl.build(:group)}
-      let (:user){FactoryGirl.build(:user)}
-      let (:jef){FactoryGirl.build(:user)}
+      let (:group){FactoryGirl.create(:group)}
+      let (:user){FactoryGirl.create(:user)}
+      let (:jef){FactoryGirl.create(:user)}
       let (:args) {{group_id: group.id, user_id:jef.id, description: "Winkel",amount: 10}}
 
     it "has a valid factory" do
@@ -13,8 +13,7 @@ RSpec.describe Group, :type => :model do
 
   context '.destroy_self' do
     it "can delete an active_record of Group" do
-      johnny5 = Group.create(name:"Short Circuit")
-      johnny5.destroy_self
+      group.destroy_self
       expect(Group.all.size).to eq 0
     end
   end
@@ -33,7 +32,7 @@ RSpec.describe Group, :type => :model do
 
   context '.kick_member' do
     it "can remove members" do
-      group.users << jef
+      group.invite_member(jef)
       group.kick_member(jef)
       expect(group.users.size).to eq(0)
     end
@@ -41,8 +40,7 @@ RSpec.describe Group, :type => :model do
 
   context '.create_bill' do
     it "can create bills" do
-      group.users << jef
-      jef.save
+      group.invite_member(jef)
       group.create_bill(args)
       expect(Bill.first.amount).to eq 10
       expect(Bill.first.user_id).to eq jef.id
@@ -51,7 +49,6 @@ RSpec.describe Group, :type => :model do
     end
 
     it "can not create bills for other groups" do
-      jef.save
       group.create_bill(args)
       expect(Bill.all.size).to eq 0
     end
@@ -59,8 +56,7 @@ RSpec.describe Group, :type => :model do
 
   context '.bills' do
     it "shows all bills for the correct group" do
-      group.users << jef
-      jef.save
+      group.invite_member(jef)
       Bill.create(amount:1, user_id:jef.id, group_id: group.id+1)
       group.create_bill(args)
       expect(group.bills.size).to eq 1
@@ -69,9 +65,7 @@ RSpec.describe Group, :type => :model do
 
  context '.bills_for_member' do
    it "shows all groupbills for a member" do
-     group.users << jef
-     jef.save
-     user.save
+     group.invite_member(jef)
      jefs_bill = group.create_bill(args)
      args[:user_id] = user.id
      group.create_bill(args)
