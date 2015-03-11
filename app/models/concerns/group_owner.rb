@@ -10,6 +10,13 @@ module GroupOwner
     end
   end
 
+  def kick_multiple_members(member_ids,group)
+    member_ids.each do |i|
+      member = User.find(i)
+      remove_member_from_group(member,group)
+    end
+  end
+
   def invite_member_to_group(new_member, group)
     self.is_owner_of?(group) do
       group.invite_member(new_member)
@@ -19,6 +26,7 @@ module GroupOwner
   def remove_member_from_group(member, group)
     self.is_owner_of?(group) do
       group.kick_member(member)
+      group.bills.where(user_id: member.id).destroy_all
     end
   end
 

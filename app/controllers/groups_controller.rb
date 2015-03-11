@@ -39,10 +39,7 @@ class GroupsController < ApplicationController
   def destroy_multiple_members
     set_group
     members_ids = params[:members_ids].split(',')
-    members_ids.each do |i|
-      member = User.find(i)
-        current_user.remove_member_from_group(member,@group)
-      end
+    current_user.kick_multiple_members(members_ids,@group)
     redirect_to group_url(id: @group.id)
   end
 

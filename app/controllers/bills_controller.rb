@@ -17,19 +17,8 @@ class BillsController < ApplicationController
     else
       render :new
     end
-    # respond_to do |format|
-    #   if @bill.save
-    #     format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
-    #     format.json { render :show, status: :created, location: @bill }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @bill.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
-  # DELETE /bills/1
-  # DELETE /bills/1.json
   def destroy
     @bill.destroy
     respond_to do |format|
@@ -39,12 +28,10 @@ class BillsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_bill
       @bill = Bill.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
       {amount: params[:bill][:amount],
        user_id: params[:user_id],
