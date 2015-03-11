@@ -70,7 +70,7 @@ RSpec.describe GroupsController, :type => :controller do
   end
 
   describe "POST #destroy_multiple_members" do
-    it "should destroy the group" do
+    it "should remove multiple members" do
       group.users << [jef,jos]
       post :destroy_multiple_members, id: group.id, members_ids: "#{jef.id},#{jos.id}"
       expect(group.users.size).to eq 0

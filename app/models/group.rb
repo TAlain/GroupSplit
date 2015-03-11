@@ -8,6 +8,7 @@ class Group < ActiveRecord::Base
 
   def kick_member member
     users.delete(member) if users.include? member
+    bills.where(user_id: member.id).destroy_all
   end
 
   def create_bill args

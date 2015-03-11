@@ -37,6 +37,15 @@ RSpec.describe User, :type => :module do
     end
   end
 
+  let(:jef2){FactoryGirl.create(:user)}
+  context '.kick_multiple_members' do
+    it 'can remove multiple members at once' do
+      expect(users_group).to receive(:kick_member).twice
+      jef.save
+      user.kick_multiple_members([jef,jef2],users_group)
+    end
+  end
+
   context '.destroy_group' do
     it "can destroy an owned group" do
       users_group.save

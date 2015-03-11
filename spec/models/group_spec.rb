@@ -29,6 +29,13 @@ RSpec.describe Group, :type => :model do
       group.kick_member(jef)
       expect(group.users.size).to eq(0)
     end
+
+    it "will also remove bills from the member" do
+      group.invite_member(jef)
+      group.create_bill(args)
+      group.kick_member(jef)
+      expect(Bill.all.size).to eq 0
+    end
   end
 
   context '.create_bill' do

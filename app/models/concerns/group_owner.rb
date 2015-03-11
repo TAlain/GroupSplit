@@ -26,7 +26,6 @@ module GroupOwner
   def remove_member_from_group(member, group)
     self.is_owner_of?(group) do
       group.kick_member(member)
-      group.bills.where(user_id: member.id).destroy_all
     end
   end
 
