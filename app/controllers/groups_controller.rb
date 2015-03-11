@@ -49,7 +49,6 @@ class GroupsController < ApplicationController
   def calculate_split_expenses
     set_group
     @group_split = @group.calculate_split_expenses
-
   end
 
   def set_group

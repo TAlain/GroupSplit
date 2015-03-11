@@ -6,7 +6,7 @@ RSpec.describe GroupsController, :type => :controller do
   let(:user) { User.first }
   let(:jef) {FactoryGirl.build(:user, username: "Jef")}
   let(:jos) {FactoryGirl.build(:user, username: "Jos")}
-  let(:group) {FactoryGirl.build(:group, owner_id: user.id)}
+  let(:group) {FactoryGirl.create(:group, owner_id: user.id)}
 
   describe "GET new" do
     it "returns http success" do
@@ -46,7 +46,6 @@ RSpec.describe GroupsController, :type => :controller do
 
   describe "POST #show" do
     it "should return the correct response" do
-      group.save
       post :show, id: group.id
       expect(response).to have_http_status(200)
       expect(response).to render_template :show
@@ -55,7 +54,6 @@ RSpec.describe GroupsController, :type => :controller do
 
   describe "POST #update" do
     it "can invite new members to group" do
-      group.save
       jef.save
       post :update, id: group.id, member_username: ["jef"]
       expect(group.users).to include jef
@@ -65,7 +63,6 @@ RSpec.describe GroupsController, :type => :controller do
 
   describe "POST #destroy" do
     it "should destroy the group" do
-      group.save
       post :destroy, id: group.id
       expect(Group.all.size).to eq 0
       expect(response).to redirect_to action: :new
@@ -74,7 +71,6 @@ RSpec.describe GroupsController, :type => :controller do
 
   describe "POST #destroy_multiple_members" do
     it "should destroy the group" do
-      group.save
       group.users << [jef,jos]
       post :destroy_multiple_members, id: group.id, members_ids: "#{jef.id},#{jos.id}"
       expect(group.users.size).to eq 0
