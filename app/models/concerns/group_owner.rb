@@ -6,7 +6,7 @@ module GroupOwner
 
   def destroy_group(group)
     self.is_owner_of?(group) do
-      group.destroy_self
+      group.destroy
     end
   end
 

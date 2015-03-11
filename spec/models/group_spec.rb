@@ -11,13 +11,6 @@ RSpec.describe Group, :type => :model do
       expect(group).to be_valid
     end
 
-  context '.destroy_self' do
-    it "can delete an active_record of Group" do
-      group.destroy_self
-      expect(Group.all.size).to eq 0
-    end
-  end
-
   context '.invite_member' do
     it "can add users" do
       group.invite_member(jef)
