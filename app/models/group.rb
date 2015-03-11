@@ -24,6 +24,11 @@ class Group < ActiveRecord::Base
   end
 
   def calculate_split_expenses
-    ExpenseCalculator.split_up_expenses(self)
+    calculator.split_up_expenses
+  end
+
+  private
+  def calculator
+    ExpenseCalculator.new(self)
   end
 end
