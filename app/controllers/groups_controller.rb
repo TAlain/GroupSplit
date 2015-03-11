@@ -48,6 +48,7 @@ class GroupsController < ApplicationController
     @group_split = @group.calculate_split_expenses
   end
 
+  private
   def set_group
     @group = Group.find(params[:id])
   end
