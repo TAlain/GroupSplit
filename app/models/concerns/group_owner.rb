@@ -1,4 +1,3 @@
-
 module GroupOwner
   def create_group(groupname)
     Group.create(name: groupname, owner_id: self.id)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :module do
+RSpec.describe GroupOwner, :type => :module do
 
   let(:user){FactoryGirl.build(:user)}
   let(:jef){FactoryGirl.build(:user)}
