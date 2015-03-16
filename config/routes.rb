@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_multiple_members'
       get '(:id)/calculate_split_expenses' => 'groups#calculate_split_expenses', :as =>'calculate_split_expenses'
+      get '(:id)/show_bills' => 'groups#show_bills', :as => 'show_bills'
     end
   end
 
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root :to => redirect('/groups/new')
+  root :to => redirect('/groups')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

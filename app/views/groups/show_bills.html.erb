@@ -1,0 +1,6 @@
+<% @bills.each do |bill|%>
+  <div class="panel panel-default">
+    <%= label_tag User.find(bill.user_id).username %> <%= label_tag bill.description%> <br>
+    <%= label_tag bill.amount %>
+  </div>
+<% end %>
