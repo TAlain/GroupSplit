@@ -1,0 +1,45 @@
+.navbar-collapse.collapse {
+    display: block!important;
+}
+
+.navbar-left {
+    float: left !important;
+
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: -15px !important;
+}
+
+.navbar-right {
+    float: right!important;
+}
+
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    height:100%;
+}
+.dropdown-menu {
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.dropdown-link {
+    background-color: black;
+    height: 4em;
+    width: 100%;
+}
+
+a.dropdown-toggle.nav {
+    color: #777;
+    font-size:12px;
+    line-height: 2.3em;
+}
