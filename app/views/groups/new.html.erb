@@ -1,11 +1,9 @@
   <%=form_for @group, :html => {:controller => "groups" , :action => "create", :method => "post"} do |f| %>
   <div class="form-group">
-    <div class="col-xs-2">
     <%= f.label :name,"Group Name"%>
     <%= f.text_field :name, class: "form-control"%>
       <br>
       <%= f.submit "Create Group", class: "btn btn-primary"%>
-    </div>
   </div>
     <%= @group.errors.full_messages.first if @group.errors.any? %>
   <%end%>

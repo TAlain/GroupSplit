@@ -1,5 +1,4 @@
 <%= form_for(@bill) do |f| %>
-    <div class="col-xs-2">
   <%= select_tag "groups_select", options_from_collection_for_select(current_user.groups, "id", "name") %> <br><br>
   <%= label_tag "Amount"%> <%= f.number_field :amount, class: "form-control", :step => 0.01%>
   <%= label_tag "Description"%> <%= f.text_field :description, class: "form-control"%>
@@ -20,5 +19,4 @@
     <br>
     <%= f.submit %>
   </div>
-    </div>
 <% end %>

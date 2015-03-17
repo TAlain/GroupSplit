@@ -1,4 +1,3 @@
-<div class="col-xs-3">
 <% @groups.each do |group| %>
   <div class="panel panel-default">
        <b><%= label_tag "Group:"%> <%= label_tag group.name%></b>
@@ -16,5 +15,5 @@
     </div>
   </div>
 <% end %>
+  <%= label_tag 'test', nil, class:"label label-default" %>
   <%= link_to "Create new Group", new_group_path, class: "btn btn-primary"%> <br>
-</div>
