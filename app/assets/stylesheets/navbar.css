@@ -18,11 +18,10 @@
 .navbar-center
 {
     position: absolute;
-    width: 100%;
-    left: 0;
+    width: 80%;
+    left: 10%;
     top: 0;
     text-align: center;
-    margin: auto;
     height:100%;
 }
 .dropdown-menu {
@@ -33,7 +32,7 @@
 }
 
 .dropdown-link {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.54);
     height: 4em;
     width: 100%;
 }

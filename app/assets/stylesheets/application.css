@@ -19,8 +19,16 @@ body
     padding:0;
     font-family:Arial;
     font-size:12px;
+
+    background-color: #616161;
 }
 .mainContent
 {
     margin: 5%;
+    background-color: #616161;
+}
+
+.panel-default
+{
+    background-color: #a0a0a0;
 }
