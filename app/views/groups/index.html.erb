@@ -1,10 +1,12 @@
 <% @groups.each do |group| %>
   <div class="panel panel-default">
        <b><%= label_tag "Group:"%> <%= label_tag group.name%></b>
-    <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id)%> |
-    <%= link_to "Show Bills", show_bills_groups_path(group, group.id)%> |
+    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+    <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id),class:"btn btn-default"%>
+    <%= link_to "Show Bills", show_bills_groups_path(group, group.id),class:"btn btn-default"%>
       <% if current_user.id == group.owner_id %>
-        <%= link_to "Edit", group_path(group.id)%> |
+        <%= link_to "Edit", group_path(group.id),class:"btn btn-default"%>
+        </div>
       <%end%>
       </br>
     <div class="panel-body">

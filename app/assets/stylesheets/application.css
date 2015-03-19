@@ -32,3 +32,13 @@ body
 {
     background-color: #a0a0a0;
 }
+
+.panel-default > .panel-heading
+{
+    background-color: #717171;
+}
+
+div.btn-group > .btn-default
+{
+   background-color: #428BCA;
+}

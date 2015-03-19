@@ -3,7 +3,7 @@
   <h5> <%=label_tag "Group Owner: " +User.find(@group.owner_id).username %></h5>
 
   <%=form_for @group, :html => {:controller => "groups", :action => "update", :method => "patch"} do%>
-    <%= label_tag "New Member" %> <%= text_field "member_username", nil, id: @group.id%>
+    <%= text_field "member_username", nil, id: @group.id, placeholder:"Member to be invited"%>
     <%= submit_tag "Invite", class: 'btn-primary btn' %>
   <% end %>
 
