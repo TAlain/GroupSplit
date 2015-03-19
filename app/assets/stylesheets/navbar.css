@@ -18,27 +18,33 @@
 .navbar-center
 {
     position: absolute;
-    width: 80%;
-    left: 10%;
+    width: 50%;
+    left: 25%;
     top: 0;
     text-align: center;
     height:100%;
+    z-index: 9999;
 }
 .dropdown-menu {
     width: 100%;
     left: 0;
     text-align: center;
     margin: auto;
+    z-index: 9999;
+    background-color: black;
+    opacity: 0.8;
 }
 
 .dropdown-link {
-    background-color: rgba(0, 0, 0, 0.54);
     height: 4em;
     width: 100%;
+    z-index: 9999;
+    background-color: black;
 }
 
 a.dropdown-toggle.nav {
     color: #777;
     font-size:12px;
     line-height: 2.3em;
+    z-index: 9999;
 }
