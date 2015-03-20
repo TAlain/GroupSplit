@@ -24,6 +24,8 @@ body
 }
 .mainContent
 {
+    position: fixed;
+    /*left: 80%;*/
     margin: 5%;
     background-color: #616161;
 }
@@ -31,14 +33,21 @@ body
 .panel-default
 {
     background-color: #a0a0a0;
+    box-shadow: inset -10px 0 10px rgba(0,0,0,0.4);
 }
 
 .panel-default > .panel-heading
 {
     background-color: #717171;
 }
-
+div.btn-group
+{
+    width: 100%;
+}
 div.btn-group > .btn-default
 {
-   background-color: #428BCA;
+    box-shadow: inset -5px 0 5px rgba(0,0,0,0.4);
+    background-color: #428BCA;
+    border: 0px;
+    min-width: 50px;
 }

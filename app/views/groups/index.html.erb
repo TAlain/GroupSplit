@@ -1,6 +1,7 @@
+
 <% @groups.each do |group| %>
   <div class="panel panel-default">
-       <b><%= label_tag "Group:"%> <%= label_tag group.name%></b>
+       <b><%= label_tag group.name%></b>
     <div class="btn-group btn-group-xs" role="group" aria-label="...">
     <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id),class:"btn btn-default"%>
     <%= link_to "Show Bills", show_bills_groups_path(group, group.id),class:"btn btn-default"%>

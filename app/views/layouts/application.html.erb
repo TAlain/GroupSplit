@@ -9,9 +9,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <%= render "shared/navbar" %>
-<div class="mainContent">
-<%= yield %>
+<%= render "shared/side_navbar" %>
+
+<div class="mainContent col-xs 8">
+
+  <%= yield %>
 </div>
 </body>
 </html>
