@@ -1,0 +1,30 @@
+div.transition-zone {
+    position: relative;
+    -webkit-transition-property: left;
+    -webkit-transition-duration: 0.1s;
+    -webkit-transition-timing-function: linear;
+
+    transition-property: left;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    left:0%;
+}
+
+div.transition-zone.right {
+    left:80%;
+}
+
+nav.navbar-custom {
+    left: -100%;
+    -webkit-transition-property: left;
+    -webkit-transition-duration: 0.1s;
+    -webkit-transition-timing-function: linear;
+
+    transition-property: left;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+nav.navbar-custom.open {
+    left: 0%;
+}

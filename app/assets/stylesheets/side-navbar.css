@@ -3,7 +3,6 @@
     width: 80%;
     height: 100%;
     box-shadow: inset -10px 0 10px rgba(0,0,0,0.4);
-    left: -500%;
 }
 
 nav.navbar-custom * a {

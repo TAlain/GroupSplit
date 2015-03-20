@@ -24,8 +24,7 @@ body
 }
 .mainContent
 {
-    position: fixed;
-    /*left: 80%;*/
+    position: relative;
     margin: 5%;
     background-color: #616161;
 }

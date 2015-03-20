@@ -52,3 +52,10 @@ a.dropdown-toggle.nav {
     line-height: 2.3em;
     z-index: 9999;
 }
+.fa-bars {
+    background-color: transparent;
+    border: 0px;
+    color: #777;
+    margin-top: 30%;
+    margin-left: 40%;
+}
