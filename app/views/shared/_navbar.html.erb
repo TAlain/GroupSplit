@@ -1,25 +1,18 @@
 <nav role="navigation" class="navbar navbar-inverse">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <!--<div class="navbar-header">-->
-    <!--<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">-->
-      <!--<span class="sr-only">Toggle navigation</span>-->
-      <!--<span class="icon-bar"></span>-->
-      <!--<span class="icon-bar"></span>-->
-      <!--<span class="icon-bar"></span>-->
-    <!--</button>-->
-  <!--</div>-->
-  <!-- Collection of nav links and other content for toggling -->
   <div id="navbarCollapse" class="collapse navbar-collapse">
 
     <ul class="nav navbar-nav navbar-left">
       <li><span id="left-menu" class="fa fa-bars fa-2x"></span></li>
 
     <div class="navbar-center navbar-brand">
-      <a href="#" data-toggle="dropdown" class="nav dropdown-toggle">Current-Group<b class="caret"></b></a>
+      <%= hidden_field_tag "bill_group", nil%>
+      <a href="#" data-toggle="dropdown" class="nav dropdown-toggle">Create Bill<b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#" class="dropdown-link">Group1</a></li>
-        <li><a href="#" class="dropdown-link">Group2</a></li>
-        <li><a href="#" class="dropdown-link">Group3</a></li>
+        <% if current_user %>
+        <% current_user.groups.each do |group| %>
+          <li> <%=link_to group.name, new_bill_path, class_id: group.id, id:"group_id", class: 'dropdown-link' %></li>
+          <%end%>
+        <%end%>
       </ul>
     </div>
     </ul>
@@ -27,7 +20,6 @@
     <ul class="nav navbar-nav navbar-right">
       <!--<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>-->
       <li><%= link_to "Bills", bills_path %></li>
-      <!--<li><a href="#">Login</a></li>-->
     </ul>
   </div>
 </nav>

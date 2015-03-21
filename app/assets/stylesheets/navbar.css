@@ -36,7 +36,7 @@
     margin: auto;
     z-index: 9999;
     background-color: black;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .dropdown-link {
@@ -44,6 +44,7 @@
     width: 100%;
     z-index: 9999;
     background-color: black;
+    border-bottom: 1px solid rgb(67, 67, 67);
 }
 
 a.dropdown-toggle.nav {
