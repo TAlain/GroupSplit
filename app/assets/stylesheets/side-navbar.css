@@ -11,3 +11,8 @@ nav.navbar-custom * a {
     border-bottom: 1px solid rgb(40,40,40)
 }
 
+nav.navbar-custom li:first-child {
+    margin-top: 50px;
+    border-top: 1px solid rgb(40,40,40)
+}
+
