@@ -42,6 +42,7 @@ gem 'rails_12factor', group: :production
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem "font-awesome-rails"
 
 #--
 # Use ActiveModel has_secure_password
