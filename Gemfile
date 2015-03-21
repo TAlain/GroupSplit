@@ -35,6 +35,7 @@ gem 'devise'
 
 gem 'awesome_print', '~> 1.6.1'
 gem 'pry'
+gem 'rails_12factor', group: :production
 
 # -- To Bootstrap
 
