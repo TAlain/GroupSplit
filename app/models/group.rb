@@ -11,4 +11,5 @@ class Group < ActiveRecord::Base
     users.delete(member) if users.include? member
     bills.where(user_id: member.id).destroy_all
   end
+
 end

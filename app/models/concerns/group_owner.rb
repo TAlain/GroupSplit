@@ -6,6 +6,9 @@ module GroupOwner
   def destroy_group(group)
     self.is_owner_of?(group) do
       group.destroy
+      Bill.all.each do |bill|
+        bill.destroy if bill.group_id == group.id
+      end
     end
   end
 
