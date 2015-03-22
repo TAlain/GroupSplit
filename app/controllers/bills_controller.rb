@@ -7,11 +7,11 @@ class BillsController < ApplicationController
 
   def new
     @bill = Bill.new
+    @group = Group.find(params[:group_id])
   end
 
   def create
     @bill = Bill.new(bill_params)
-
     if @bill.save
       redirect_to @bill, notice: 'Bill was successfully created.'
     else

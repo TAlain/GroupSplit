@@ -10,7 +10,7 @@
       <ul class="dropdown-menu">
         <% if current_user %>
         <% current_user.groups.each do |group| %>
-          <li> <%=link_to group.name, new_bill_path, class_id: group.id, id:"group_id", class: 'dropdown-link' %></li>
+          <li> <%=link_to group.name, new_bill_path(group_id: group.id), class_id: group.id, id:"group_id", class: 'dropdown-link' %></li>
           <%end%>
         <%end%>
       </ul>

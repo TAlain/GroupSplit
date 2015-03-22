@@ -5,6 +5,7 @@ RSpec.describe BillsController, :type => :controller do
   let(:user) { User.first }
   let(:valid_attributes) {{amount: 4,user_id: user.id, group_id: 1, description: "Winkel" }}
   let(:invalid_attributes) {{:user_id => nil,:group_id => nil}}
+  let(:group) {FactoryGirl.create(:group, owner_id: user.id)}
 
   let (:post_attributes) {{:bill => {amount: 5, description: "Winkel"}, groups_select:5 , user_id:2}}
 
@@ -27,7 +28,7 @@ RSpec.describe BillsController, :type => :controller do
 
   describe "GET new" do
     it "assigns a new bill as @bill" do
-      get :new
+      get :new, {group_id: group.id}
       expect(assigns(:bill)).to be_a_new(Bill)
       expect(response).to render_template :new
     end
