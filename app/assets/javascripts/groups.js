@@ -8,6 +8,5 @@ $(document).ready(function() {
             selected_Members = selected_Members +( $( element).attr('id')+ ',');
         });
         $('#members_ids').attr('value', selected_Members);
-
     });
 });
