@@ -7,9 +7,10 @@
     <%= link_to "Show Bills", show_bills_groups_path(group, group.id),class:"btn btn-default"%>
       <% if current_user.id == group.owner_id %>
         <%= link_to "Edit", group_path(group.id),class:"btn btn-default"%>
-        </div>
       <%end%>
-      </br>
+    </div>
+
+    </br>
     <div class="panel-body">
       <% group.users.each do |user| %>
        <%= label_tag user.username, nil, class:"label label-default" %>
@@ -17,6 +18,4 @@
 
     </div>
   </div>
-<% end %><br>
-<%=label_tag 'test'%>
-  <%= link_to "Create new Group", new_group_path, class: "btn btn-primary"%> <br>
+<% end %><%= link_to "Create new Group", new_group_path, class: "btn btn-primary"%> <br>
