@@ -12,7 +12,7 @@
           <%= label_tag "Description: "%> <%= label_tag bill.description%>
         <%= link_to 'Show', bill %>
         <%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-          <%= label_tag "Ammount: "%><%= label_tag number_to_currency(bill.amount, unit: '€')%></br>
+          <%= label_tag number_to_currency(bill.amount, unit: '€')%> payed by <%=User.find(bill.user_id).username%></br>
           <%= label_tag "Group: "%><%= label_tag bill.group.name%>
   </div>
     <% end %>
