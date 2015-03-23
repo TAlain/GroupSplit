@@ -9,4 +9,13 @@ $(document).ready(function() {
         });
         $('#members_ids').attr('value', selected_Members);
     });
+
+    $('.group-delete').click(function(e) {
+        e.preventDefault();
+        bootbox.confirm("Are you sure you want to delete this group? It will also delete all related Bills", function(result) {
+            if(result) {
+                $(".edit_group", ".delete").submit();
+            }
+        });
+    });
 });
