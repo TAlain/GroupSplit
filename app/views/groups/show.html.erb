@@ -2,24 +2,29 @@
 <h4> <%=label_tag "Group: " + @group.name %></h4>
   <h5> <%=label_tag "Owner: " +User.find(@group.owner_id).username %></h5>
 
-  <div>Group Members</div>
-<div id='members-container' class='members-container panel panel-default'>
-  <div class="panel-body">
-  <% @group.users.each do |u| %>
-    <% if u.id != @group.owner_id%>
-      <%= label_tag u.username,nil, class: 'label label-default select_members', id: u.id %>
-    <% end %>
-  <% end %>
+  <% if @group.users.count > 1 %>
+    <div id='members-container' class='members-container panel panel-default'>
+      <div>Group Members</div>
+      <div class="panel-body">
+           <% @group.users.each do |u| %>
+            <% if u.id != @group.owner_id%>
+              <%= label_tag u.username,nil, class: 'label label-default select_members', id: u.id %>
+            <% end %>
+           <% end %>
+      </div>
     </div>
-</div>
-  <%= form_tag destroy_multiple_members_groups_path, method: :delete do %>
-    <%= hidden_field_tag :members_ids, nil%>
-    <%= hidden_field_tag :id, @group.id %>
-    <%= submit_tag "Remove selected members", class: 'btn-primary btn delete_members'%>
-  <% end %>
-  </br>
+      <%= form_tag destroy_multiple_members_groups_path, method: :delete do %>
+        <%= hidden_field_tag :members_ids, nil%>
+        <%= hidden_field_tag :id, @group.id %>
+        <%= submit_tag "Remove selected members", class: 'btn-primary btn delete_members'%>
+      <% end %>
+  <% else%>
+      <div class="panel panel-body panel-default">
+    <div>This group has no users, invite more users so you can start splitting the bills!</div>
+      </div>
+  <%end%>
   <%=form_for @group, :html => {:controller => "groups", :action => "update", :method => "patch"} do%>
-    <%= text_field "member_username", nil, id: @group.id, placeholder:"Member to be invited"%>
+    <%= text_field "member_username", nil, id: @group.id, placeholder:"Member to be invited", style: "margin-top:20px;"%>
     <%= submit_tag "Invite", class: 'btn-primary btn' %>
   <% end %>
   </br>

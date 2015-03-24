@@ -50,21 +50,3 @@ div.btn-group > .btn-default
     border: 0px;
     min-width: 50px;
 }
-
-.modal {
-    outline: none;
-    position: absolute;
-    margin-top: 0;
-    top: 20%;
-    overflow: visible; /* allow content to popup out (i.e tooltips) */
-}
-.modal-content {
-    background-color: rgba(151, 1, 8,4);
-    color: black;
-}
-.modal-backdrop,
-.modal-backdrop.fade.in{
-    opacity: 0.7;
-    filter: alpha(opacity=70);
-    background: #fff;
-}
