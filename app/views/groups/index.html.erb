@@ -4,7 +4,7 @@
        <b><%= label_tag group.name%></b>
     <div class="btn-group btn-group-xs" role="group" aria-label="...">
     <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id),class:"btn btn-default"%>
-    <%= link_to "Show Bills", show_bills_groups_path(group, group.id),class:"btn btn-default"%>
+    <%= link_to "Show Bills", bills_path(group_id: group.id),class:"btn btn-default"%>
       <% if current_user.id == group.owner_id %>
         <%= link_to "Edit", group_path(group.id),class:"btn btn-default"%>
       <%end%>
