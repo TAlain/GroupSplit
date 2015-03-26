@@ -30,10 +30,6 @@ class GroupsController < ApplicationController
     set_group
   end
 
-  def show_bills
-    @bills = set_group.bills
-  end
-
   def destroy
     set_group
     current_user.destroy_group(@group)
