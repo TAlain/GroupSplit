@@ -15,7 +15,7 @@ class BillsController < ApplicationController
     if @bill.save
       redirect_to @bill, notice: 'Bill was successfully created.'
     else
-      redirect_to new_bill_path(group_id: @bill.group.id)
+      redirect_to new_bill_path(group_id: @bill.group.id), notice: 'Fill in amount and description please.'
     end
   end
 
