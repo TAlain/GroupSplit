@@ -2,7 +2,8 @@ class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bills = Bill.where(user_id: current_user.id)
+    params = { group_id: 12}
+    @bills = Bill.filter(params.slice(:user_id, :group_id))
   end
 
   def new
