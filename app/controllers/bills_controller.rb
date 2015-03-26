@@ -15,7 +15,7 @@ class BillsController < ApplicationController
     if @bill.save
       redirect_to @bill, notice: 'Bill was successfully created.'
     else
-      render :new
+      redirect_to new_bill_path(group_id: @bill.group.id)
     end
   end
 
