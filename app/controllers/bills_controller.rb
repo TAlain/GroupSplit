@@ -3,6 +3,7 @@ class BillsController < ApplicationController
 
   def index
     @bills = Bill.filter(params.slice(:user_id, :group_id))
+    @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   def new

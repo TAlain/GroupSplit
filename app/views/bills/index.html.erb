@@ -7,11 +7,24 @@
   </thead>
 
   <tbody>
-  <%= select_tag "group_id", content_tag(:option,'All',:value=>"all") +
+  <span class="filter group-filter col-xs-6">
+    <%=label_tag "Filter for group: "%>
+    <%= select_tag "group_id", content_tag(:option,'All',:value=>"all") +
     options_from_collection_for_select(current_user.groups, "id", "name", selected: params[:group_id]),
-                 class: "group_select",style: "width: 50%; height: 3em;"%>
+                 class: "group_select"%> </span>
+  <span class="filter user-filter col-xs-6">
+    <% if @group%>
+    <%=label_tag "Filter for user: "%>
+    <%= select_tag "user_id", content_tag(:option,'All',:value=>"all") +
+    options_from_collection_for_select(@group.users, "id", "username", selected: params[:user_id]),
+                                                        class: "user_select", style:"float:right"%>
+      <%end%>
+      </span>
+  <br><br><br>
 
-    <% @bills.each do |bill| %>
+
+
+  <% @bills.each do |bill| %>
   <div class="panel panel-default">
       <%if bill.user_id == current_user.id%>
       <div class="btn-group btn-group-xs" role="group" aria-label="...">
