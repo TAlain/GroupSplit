@@ -7,7 +7,7 @@
     overflow: visible;
 }
 .modal-content {
-    background-color: rgba(151, 1, 8,4);
+    background-color: rgba(151, 1, 8, 1);
     font-size: large;
     color: black;
 }
