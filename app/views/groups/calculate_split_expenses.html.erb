@@ -1,5 +1,10 @@
 <% @group_split.each do |user, amount| %>
   <div class="panel panel-default">
-    <%= label_tag user %> <%= label_tag amount%>
+    <%= label_tag user %>
+    <% if amount > 0 %>
+      Must pay: <%= label_tag number_to_currency(amount.abs, unit:'€')%>
+      <%else%>
+    Should receive: <%= label_tag number_to_currency(amount.abs, unit:'€')%>
+      <%end%>
   </div>
 <% end %>
