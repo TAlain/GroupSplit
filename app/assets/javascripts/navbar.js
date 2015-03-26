@@ -13,6 +13,4 @@ function setGroupId() {
     var group_name = localStorage.getItem('group_name');
     $('#bill_group').attr('value', group_id);
     $('.bill_title').text('New bill for '+ group_name);
-
-    $.get('/bills/new.json?group_id=' + group_id, group_id);
 }

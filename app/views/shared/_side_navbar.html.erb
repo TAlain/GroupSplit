@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-custom col-xs-4">
   <ul class="nav nav-pills nav-stacked">
     <li><%= link_to "Groups", groups_path %></li>
-    <li><%= link_to "Bills", bills_path %></li>
+    <li><%= link_to "Bills", bills_path(user_id: current_user.id) %></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
     <li><%= link_to "History", '#' %></li>
     <li><%= link_to "About", '#' %></li>

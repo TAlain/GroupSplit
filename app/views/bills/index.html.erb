@@ -7,6 +7,10 @@
   </thead>
 
   <tbody>
+  <%= select_tag "group_id", content_tag(:option,'All',:value=>"all") +
+    options_from_collection_for_select(current_user.groups, "id", "name", selected: params[:group_id]),
+                 class: "group_select",style: "width: 50%; height: 3em;"%>
+
     <% @bills.each do |bill| %>
   <div class="panel panel-default">
       <%if bill.user_id == current_user.id%>
