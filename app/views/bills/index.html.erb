@@ -29,6 +29,7 @@
       <%if bill.user_id == current_user.id%>
       <div class="btn-group btn-group-xs" role="group" aria-label="...">
       <%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default", style: "margin: 5px;" %>
+        <div class="bill-date"> <%=label_tag bill.date %></div>
       </div>
       <%end%>
     <%=label_tag User.find(bill.user_id).username%> paid:  <%= label_tag number_to_currency(bill.amount, unit: '€')%>

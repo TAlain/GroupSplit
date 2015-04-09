@@ -37,6 +37,7 @@ class BillsController < ApplicationController
       {amount: params[:bill][:amount],
        user_id: params[:user_id],
        group_id: params[:groups_select],
-      description: params[:bill][:description]}
+      description: params[:bill][:description],
+      date: params[:bill][:date]}
     end
 end
