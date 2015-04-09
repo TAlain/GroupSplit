@@ -27,7 +27,7 @@ class BillsController < ApplicationController
 
   def update
     @bill = Bill.find(params[:id])
-    @bill.update(bill_params)
+    @bill.update(update_bill_params)
     if @bill.save
       redirect_to @bill, notice: 'Bill was successfully updated.'
     else
@@ -54,5 +54,12 @@ class BillsController < ApplicationController
        group_id: params[:groups_select],
       description: params[:bill][:description],
       date: params[:bill][:date]}
+    end
+
+    def update_bill_params
+      {amount: params[:bill][:amount],
+       user_id: params[:user_id],
+       description: params[:bill][:description],
+       date: params[:bill][:date]}
     end
 end
