@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill, only: [:show, :edit, :edit, :destroy]
 
   def index
     @bills = Bill.filter(params.slice(:user_id, :group_id))
@@ -17,6 +17,21 @@ class BillsController < ApplicationController
       redirect_to @bill, notice: 'Bill was successfully created.'
     else
       redirect_to new_bill_path(group_id: @bill.group.id), notice: 'Fill in amount and description please.'
+    end
+  end
+
+  def edit
+    @bill = Bill.find(params[:id])
+    @group = Group.find(@bill.group_id)
+  end
+
+  def update
+    @bill = Bill.find(params[:id])
+    @bill.update(bill_params)
+    if @bill.save
+      redirect_to @bill, notice: 'Bill was successfully updated.'
+    else
+      redirect_to edit_bill_path(@bill.id), notice: 'Fill in amount and description please.'
     end
   end
 
