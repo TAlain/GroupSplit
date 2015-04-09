@@ -26,15 +26,17 @@
 
   <% @bills.sort_by(&:date).reverse.each do |bill| %>
   <div class="panel panel-default">
-    <div class="btn-group btn-group-xs bill-btn-group" role="group" aria-label="...">
 
    <%if bill.user_id == current_user.id%>
+      <div class="btn-group btn-group-xs bill-btn-group" role="group" aria-label="...">
       <%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default", style: "margin: 5px;" %>
         <%= link_to "Edit", edit_bill_path(bill.id),class:"btn btn-default", style: "margin: 5px;" %>
+        <div class="bill-date"> <%=label_tag bill.date %></div>
+      </div>
+      <%else%>
+      <div class="bill-date"> <%=label_tag bill.date %></div>
   <%end%>
 
-    <div class="bill-date"> <%=label_tag bill.date %></div>
-    </div>
 
 
     <%=label_tag User.find(bill.user_id).username%> paid:  <%= label_tag number_to_currency(bill.amount, unit: '€')%>
