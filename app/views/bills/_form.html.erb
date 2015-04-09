@@ -3,6 +3,7 @@
   <%= select_tag "user_id", options_from_collection_for_select(@group.users, "id", "username",selected: current_user.id),style: "width: 50%; height: 3em;"%><br><br>
   <%= f.number_field :amount, class: "form-control", :step => 0.01, placeholder:"Amount"%><br>
   <%= f.text_field :description, class: "form-control",placeholder:"Description"%><br>
+  <%= f.date_field :date, class: "form-control", value: Date.today%><br>
   <% if @bill.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>

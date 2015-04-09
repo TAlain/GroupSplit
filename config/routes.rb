@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bills, :only =>[:show, :new, :create, :destroy, :index]
+  resources :bills, :only =>[:show, :new, :create, :destroy, :index, :update, :edit]
 
   devise_for :users
 
