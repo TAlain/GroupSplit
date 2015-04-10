@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
 
      let(:user){FactoryGirl.create(:user)}
+     let (:group){FactoryGirl.build(:group)}
+
 
      it "has a valid factory" do
        expect(user).to be_valid
@@ -17,5 +19,12 @@ RSpec.describe User, :type => :model do
 
      it "has a username with no white space" do
        expect{FactoryGirl.create(:user, username: "JOS BOS")}.to raise_error(ActiveRecord::RecordInvalid,"Validation failed: Attribute No empty spaces please")
+     end
+
+     it "has a username with no white space" do
+       group.invite_member(user)
+       expect(group.users.include? user).to be_truthy
+       user.leave_group(group)
+       expect(group.users.include? user).to be_falsey
      end
 end

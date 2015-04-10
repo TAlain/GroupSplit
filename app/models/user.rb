@@ -38,4 +38,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def leave_group(group)
+    group.users.delete(self) if group.users.include? self
+    group.bills.where(user_id: self.id).destroy_all
+  end
+
 end

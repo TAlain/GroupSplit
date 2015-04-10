@@ -18,4 +18,13 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('.group-leave').click(function(e) {
+        e.preventDefault();
+        bootbox.confirm("Are you sure you want to leave this group? It will also delete all your related Bills for this group", function(result) {
+            if(result) {
+                $(".leave-group-form").submit();
+            }
+        });
+    });
 });

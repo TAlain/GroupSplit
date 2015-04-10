@@ -1,16 +1,30 @@
 
 <% @groups.each do |group| %>
   <div class="panel panel-default">
-       <b><%= label_tag group.name%></b>
-    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-    <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id),class:"btn btn-default"%>
-    <%= link_to "Show Bills", bills_path(group_id: group.id),class:"btn btn-default"%>
-      <% if current_user.id == group.owner_id %>
-        <%= link_to "Edit", group_path(group.id),class:"btn btn-default"%>
-      <%end%>
-    </div>
+       <b><%= label_tag group.name%></b><br>
 
-    </br>
+
+
+  <div class="btn-group btn-group-xs" role="group" aria-label="..." style="display :inline;" >
+          <%= link_to "Calculate", calculate_split_expenses_groups_path(group, group.id),class:"btn btn-default"%>
+          <%= link_to "Show Bills", bills_path(group_id: group.id),class:"btn btn-default show-bills"%>
+      <% if current_user.id == group.owner_id %>
+          <%= link_to "Edit", group_path(group.id),class:"btn btn-default"%>
+      <%end%>
+  </div>
+
+    <% if current_user.id != group.owner_id %>
+      <%=form_tag leave_group_groups_path(group.id), method: :delete, class: "leave-group-form", style: "float: left;" do  %>
+        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+          <%= submit_tag "Leave Group", class: "btn btn-default group-leave", id: group.id%>
+        </div>
+      <%end%>
+    <%end%>
+
+
+
+
+  </br>
     <div class="panel-body">
       <% group.users.each do |user| %>
        <%= label_tag user.username, nil, class:"label label-default" %>

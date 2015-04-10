@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :groups do
     collection do
       delete 'destroy_multiple_members'
+      delete '(:id)/leave_group' => 'groups#leave_group', :as => 'leave_group'
       get '(:id)/calculate_split_expenses' => 'groups#calculate_split_expenses', :as =>'calculate_split_expenses'
       get '(:id)/show_bills' => 'groups#show_bills', :as => 'show_bills'
     end

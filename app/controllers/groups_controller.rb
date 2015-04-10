@@ -30,6 +30,12 @@ class GroupsController < ApplicationController
     set_group
   end
 
+  def leave_group
+    set_group
+    current_user.leave_group(@group)
+    redirect_to groups_path
+  end
+
   def destroy
     set_group
     current_user.destroy_group(@group)
