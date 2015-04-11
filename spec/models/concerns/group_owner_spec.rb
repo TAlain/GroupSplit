@@ -42,6 +42,7 @@ RSpec.describe GroupOwner, :type => :module do
     it 'can remove multiple members at once' do
       expect(users_group).to receive(:kick_member).twice
       jef.save
+      user.save
       user.kick_multiple_members([jef,jef2],users_group)
     end
   end

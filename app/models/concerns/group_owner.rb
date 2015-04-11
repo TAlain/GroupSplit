@@ -16,6 +16,7 @@ module GroupOwner
     member_ids.each do |i|
       member = User.find(i)
       remove_member_from_group(member,group)
+      NotifyMailer.removed_from_group(member,group).deliver
     end
   end
 
