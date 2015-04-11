@@ -39,6 +39,10 @@ gem 'pry'
 gem 'rails_12factor', group: :production
 gem 'puma'
 
+group :development, :test do
+  gem 'foreman'
+end
+
 # -- To Bootstrap
 
 gem "therubyracer"
