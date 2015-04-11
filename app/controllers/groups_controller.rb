@@ -20,8 +20,9 @@ class GroupsController < ApplicationController
 
   def update
     set_group
-    new_member=User.where(username: params[:member_username].first.capitalize)
+    new_member=User.where(username: params[:member_username].first.capitalize).first
     current_user.invite_member_to_group(new_member,@group)
+    NotifyMailer.invited_to_group(new_member,@group).deliver
 
     redirect_to group_url(id: @group.id)
   end

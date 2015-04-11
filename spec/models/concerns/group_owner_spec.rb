@@ -42,6 +42,7 @@ RSpec.describe GroupOwner, :type => :module do
     it 'can remove multiple members at once' do
       expect(users_group).to receive(:kick_member).twice
       jef.save
+      user.save
       user.kick_multiple_members([jef,jef2],users_group)
     end
   end
@@ -52,7 +53,7 @@ RSpec.describe GroupOwner, :type => :module do
       expect{user.destroy_group(users_group)}.to change(Group, :count).by(-1)
     end
 
-    it "can not destoy a non-owned group" do
+    it "can not destroy a non-owned group" do
       expect{jef.destroy_group(users_group)}.to raise_error(RuntimeError,"You are not the owner of this group.")
     end
   end
